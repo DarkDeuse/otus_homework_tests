@@ -5,11 +5,11 @@
 template <class T>
 Node<T>::Node() = default;
 template <class T>
-Node<T>::Node(int value, Node<T>* &previos, Node<T>* &next_): val{value}, prev{previos}, next{next_}{};
+Node<T>::Node(T value, Node<T>* &previos, Node<T>* &next_): val{value}, prev{previos}, next{next_}{};
 template <class T>
-Node<T>::Node(int value, Node<T>* &previos): val{value}, prev{previos}, next{nullptr} {};
+Node<T>::Node(T value, Node<T>* &previos): val{value}, prev{previos}, next{nullptr} {};
 template <class T>
-Node<T>::Node(int value): val{value}, prev{nullptr}, next{nullptr}{};
+Node<T>::Node(T value): val{value}, prev{nullptr}, next{nullptr}{};
 template <class T>
 Node<T>::~Node() = default;
 
@@ -18,12 +18,16 @@ template <class T>
 list_container<T>::list_container(): first{nullptr}, last{nullptr}, size_{0}{}
 template <class T>
 list_container<T>::~list_container(){
-    if(first == last){
+    if(size_ == 1){
         delete first;
     }
     else{
-    delete first;
-    delete last;
+        Node<T>* elem = first;
+        while (elem != last){
+            Node<T>* next_del_elem = elem->next;
+            delete elem;
+            elem = next_del_elem;
+        }
     }
 };
 template <class T>
@@ -86,7 +90,7 @@ T list_container<T>::operator[](const int index){
             return elem->val;
         }
 template <class T>
-void list_container<T>::push_back(int val){
+void list_container<T>::push_back(T val){
             Node<T>* elem = new Node<T>(val);
             if(first == nullptr){
                 elem->next = elem;
@@ -126,7 +130,7 @@ void list_container<T>::erase(int index){
             --size_;
         }
 template <class T>
-void list_container<T>::insert(int index, int value){
+void list_container<T>::insert(int index, T value){
             int max_val = size();
             if (index == 0){
                 Node<T>* moving_element = first;

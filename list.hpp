@@ -7,9 +7,9 @@ Node* prev;
 Node* next;
 T val;
 Node();
-Node(int value, Node* &previos, Node* &next_);
-Node(int value, Node* &previos);
-Node(int value);
+Node(T value, Node* &previos, Node* &next_);
+Node(T value, Node* &previos);
+Node(T value);
 ~Node();
 };
 
@@ -31,10 +31,10 @@ class list_container{
 
 
         T operator[](const int index);
-        void push_back(int val);
+        void push_back(T val);
         void erase(int index);
 
-        void insert(int index, int value);
+        void insert(int index, T value);
         void print();
         
 

@@ -26,11 +26,10 @@ template <class T>
 T serial_container<T>::operator [] (const size_t index) const{
             if (index>size_){
                 std::cout<<"Out of lenght"<<std::endl;
-                return false;
+                return std::out_of_range;
             }
             else{
-            int val = array[index];
-            return val;}
+            return array[index];}
         }
 
 template<class T>
