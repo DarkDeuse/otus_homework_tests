@@ -5,11 +5,11 @@
 template <class T>
 Node<T>::Node() = default;
 template <class T>
-Node<T>::Node(T value, Node<T>* &previos, Node<T>* &next_): val{value}, prev{previos}, next{next_}{};
+Node<T>::Node(T value, Node<T>* &previos, Node<T>* &next_): prev{previos}, next{next_}, val{value}{};
 template <class T>
-Node<T>::Node(T value, Node<T>* &previos): val{value}, prev{previos}, next{nullptr} {};
+Node<T>::Node(T value, Node<T>* &previos): prev{previos}, next{nullptr}, val{value}{};
 template <class T>
-Node<T>::Node(T value): val{value}, prev{nullptr}, next{nullptr}{};
+Node<T>::Node(T value): prev{nullptr}, next{nullptr}, val{value}{};
 template <class T>
 Node<T>::~Node() = default;
 
